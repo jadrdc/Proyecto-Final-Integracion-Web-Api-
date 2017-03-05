@@ -93,11 +93,11 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         public bool UpdateCustomer(int id,Customers_Profile customer)
         {
             Customers_Profile cust = GetCustomer(id);
-            customer.Account = customer.Account;
-            customer.User.Name = customer.User.Name;
-            customer.User.LastName = customer.User.LastName;
-            customer.Identification = customer.Identification;
-            customer.User.Password = customer.User.Password;
+            cust.Account = customer.Account;
+            cust.User.Name = customer.User.Name;
+            cust.User.LastName = customer.User.LastName;
+            cust.Identification = customer.Identification;
+            cust.User.Password = customer.User.Password;
 
 
             try
