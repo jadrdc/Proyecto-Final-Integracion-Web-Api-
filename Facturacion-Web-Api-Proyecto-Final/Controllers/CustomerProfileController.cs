@@ -53,12 +53,38 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return customer;
         }
 
-        [HttpPost]
-        public Customers_Profile AddCustomer(string username, string password)
-        {
-            var customer = repository.GetCustomer(username, password);
 
-            return customer;
+
+        [HttpGet]
+        public List<Customers_Profile> GetCustomers()
+        {
+            var customerList = repository.GetCustomers();
+
+            return customerList.ToList()  ;
+        }
+
+
+
+        [HttpPost]
+        public bool AddCustomer(string name, string lastname, string ident, string username ,string password, int account)
+        {
+
+            var customer = new Customers_Profile();
+            customer.Account = account;
+            customer.Status = "1";
+            customer.Identification = ident;
+            var user = new User();
+            user.Name = name;
+            user.LastName = lastname;
+            user.Identification = ident;
+            user.Password = password;
+            user.UserName = username;
+            user.Status = "1";
+            user.Creation_Date = DateTime.Now;
+            user.Customers_Profiles.Add(customer);
+           var  subject= repository.AddCustomer(user);
+
+            return true;
         }
 
 

@@ -20,6 +20,27 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
             db = new DataContextBill(constr);
         }
+
+        public User AddCustomer(User customer)
+        {
+
+
+            try
+            {
+
+                db.Users.InsertOnSubmit(customer);
+                db.SubmitChanges();
+
+
+                return customer;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public bool DeleteCustomer(Customers_Profile customer)
         {
 
