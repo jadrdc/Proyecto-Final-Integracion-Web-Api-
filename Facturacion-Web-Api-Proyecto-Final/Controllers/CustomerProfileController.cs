@@ -20,14 +20,13 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             repository = new CustomerRepository();
         }
 
-        [HttpGet]
-        public List<CustomerViewModel> GetCustomer()
+        [HttpDelete]
+        public bool DeleteCustomer(long id )
         {
-            var customers = repository.GetCustomersViewModel();
+            var cust = repository.GetCustomer(id);
 
-            return customers ;
+            return repository.DeleteCustomer(cust);
         }
-
 
 
 

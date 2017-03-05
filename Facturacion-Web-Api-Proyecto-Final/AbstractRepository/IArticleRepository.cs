@@ -14,7 +14,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.AbstractRepository
         Article GetArticle(long id);
         bool DeleteArticle(Article article);
         IEnumerable<Article> GetArticles();
-        Boolean UpdateArticle(Article article);
+        Boolean UpdateArticle(long id,Article article);
         Article AddArticle( Article art);
 
 

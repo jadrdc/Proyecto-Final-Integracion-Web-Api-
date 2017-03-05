@@ -11,9 +11,10 @@ namespace Facturacion_Web_Api_Proyecto_Final.AbstractRepository
     interface ICustomerRepository
     {
         Customers_Profile GetCustomer(string username , string password);
-        Customers_Profile DeleteCustomer(Customers_Profile customer);
+        Customers_Profile GetCustomer(long id);
+        bool DeleteCustomer(Customers_Profile customer);
         IEnumerable<Customers_Profile> GetCustomers();
-        Boolean UpdateCustomer(Customers_Profile customer);
+        bool UpdateCustomer(Customers_Profile customer);
         List<CustomerViewModel> GetCustomersViewModel();
     }
 }

@@ -19,14 +19,34 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         {
 
         }
-        public Customers_Profile DeleteCustomer(Customers_Profile customer)
+        public bool DeleteCustomer(Customers_Profile customer)
         {
-            throw new NotImplementedException();
-        }
 
+            try
+            {
+                db.Customers_Profiles.DeleteOnSubmit(customer);
+                db.SubmitChanges();
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+        public Customers_Profile GetCustomer(long id)
+        {
+            return db.Customers_Profiles.Where(cust => cust.Id==id).FirstOrDefault();
+
+
+        }
         public Customers_Profile GetCustomer(string username, string password)
         {
-            throw new NotImplementedException();
+         return   db.Customers_Profiles.Where(cust => (cust.User.Name.Equals(username) && cust.User.Password.Equals(password))).FirstOrDefault();
+
         }
 
         public IEnumerable<Customers_Profile> GetCustomers()
