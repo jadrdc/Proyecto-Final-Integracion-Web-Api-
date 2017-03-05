@@ -19,6 +19,9 @@ namespace Facturacion_Web_Api_Proyecto_Final
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
         }
     }
 }
