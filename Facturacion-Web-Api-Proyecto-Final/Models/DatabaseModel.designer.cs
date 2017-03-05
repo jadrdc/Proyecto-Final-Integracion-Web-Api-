@@ -163,8 +163,6 @@ namespace Facturacion_Web_Api_Proyecto_Final.Models
 		
 		private int _OrderId;
 		
-		private decimal _Amount;
-		
 		private string _MovementType;
 		
 		private System.DateTime _Date;
@@ -183,8 +181,6 @@ namespace Facturacion_Web_Api_Proyecto_Final.Models
     partial void OnDescriptionChanged();
     partial void OnOrderIdChanging(int value);
     partial void OnOrderIdChanged();
-    partial void OnAmountChanging(decimal value);
-    partial void OnAmountChanged();
     partial void OnMovementTypeChanging(string value);
     partial void OnMovementTypeChanged();
     partial void OnDateChanging(System.DateTime value);
@@ -259,26 +255,6 @@ namespace Facturacion_Web_Api_Proyecto_Final.Models
 					this._OrderId = value;
 					this.SendPropertyChanged("OrderId");
 					this.OnOrderIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2) NOT NULL")]
-		public decimal Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
 				}
 			}
 		}

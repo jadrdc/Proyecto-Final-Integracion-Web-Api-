@@ -18,6 +18,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         public CustomerRepository()
         {
 
+            db = new DataContextBill(constr);
         }
         public bool DeleteCustomer(Customers_Profile customer)
         {
@@ -37,7 +38,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
 
         }
-        public Customers_Profile GetCustomer(long id)
+        public Customers_Profile GetCustomer(int id)
         {
             return db.Customers_Profiles.Where(cust => cust.Id==id).FirstOrDefault();
 
@@ -89,9 +90,27 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
         }
 
-        public bool UpdateCustomer(Customers_Profile customer)
+        public bool UpdateCustomer(int id,Customers_Profile customer)
         {
-            throw new NotImplementedException();
+            Customers_Profile cust = GetCustomer(id);
+            customer.Account = customer.Account;
+            customer.User.Name = customer.User.Name;
+            customer.User.LastName = customer.User.LastName;
+            customer.Identification = customer.Identification;
+            customer.User.Password = customer.User.Password;
+
+
+            try
+            {
+                db.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                return false;
+            }
         }
     }
 }

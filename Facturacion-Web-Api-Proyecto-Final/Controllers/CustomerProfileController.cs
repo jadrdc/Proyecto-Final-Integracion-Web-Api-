@@ -21,12 +21,47 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         }
 
         [HttpDelete]
-        public bool DeleteCustomer(long id )
+        public bool DeleteCustomer(int id )
         {
             var cust = repository.GetCustomer(id);
 
             return repository.DeleteCustomer(cust);
         }
+
+        [HttpPut]
+        public bool UpdateCustomer(int id,string name,string lastname,string ident,string password,int account)
+        {
+            var customer = new Customers_Profile();
+            customer.Account=account;
+            customer.User = new User();
+            customer.User.Name = name;
+            customer.User.LastName = lastname;
+            customer.Identification = ident;
+            customer.User.Password = password;
+
+            return repository.UpdateCustomer(id,customer);
+        }
+
+
+
+
+        [HttpGet]
+        public Customers_Profile GetCustomer(string username,string password)
+        {
+            var customer = repository.GetCustomer(username,password);
+
+            return customer;
+        }
+
+        [HttpPost]
+        public Customers_Profile AddCustomer(string username, string password)
+        {
+            var customer = repository.GetCustomer(username, password);
+
+            return customer;
+        }
+
+
 
 
 

@@ -27,6 +27,14 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return article;
         }
 
+        [HttpGet]
+        public List<Article> GetArticle()
+        {
+
+
+            return repository.GetArticles().ToList() ;
+        }
+
         [HttpPost]
         public Article AddArticle(string description, decimal price)
         {
