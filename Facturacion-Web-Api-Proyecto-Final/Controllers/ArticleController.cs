@@ -1,6 +1,7 @@
 ﻿using Facturacion_Web_Api_Proyecto_Final.AbstractRepository;
 using Facturacion_Web_Api_Proyecto_Final.Models;
 using Facturacion_Web_Api_Proyecto_Final.RepostoryImp;
+using Facturacion_Web_Api_Proyecto_Final.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         }
 
         [HttpGet]
-        public Article GetArticle(long id)
+        public ArticleViewModel GetArticle(long id)
         {
-            var article = repository.GetArticle(id);
+            var article = repository.GetArticleViewModel(id);
 
             return article;
         }
         [HttpGet]
-        public List<Article> GetArticles()
+        public List<ArticleViewModel> GetArticles()
         {
 
             return repository.GetArticles().ToList();

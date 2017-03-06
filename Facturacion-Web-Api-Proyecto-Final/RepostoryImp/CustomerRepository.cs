@@ -6,6 +6,7 @@ using System.Web;
 using Facturacion_Web_Api_Proyecto_Final.Models;
 using Facturacion_Web_Api_Proyecto_Final.Configs;
 using System.Configuration;
+using Facturacion_Web_Api_Proyecto_Final.ViewModels;
 
 namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 {
@@ -60,13 +61,15 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         }
         public Customers_Profile GetCustomer(int id)
         {
-            return db.Customers_Profiles.Where(cust => cust.Id==id).FirstOrDefault();
+            return db.Customers_Profiles.Where(cust => cust.Id == id).FirstOrDefault();
 
 
         }
         public Customers_Profile GetCustomer(string username, string password)
         {
-         return   db.Customers_Profiles.Where(cust => (cust.User.Name.Equals(username) && cust.User.Password.Equals(password))).FirstOrDefault();
+            return db.Customers_Profiles.Where(customer => customer.User.UserName == username
+ && customer.User.Password == password
+            ).FirstOrDefault();
 
         }
 
@@ -82,35 +85,25 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
             return customerList;
         }
 
-        public List<Customers_Profile> GetCustomersViewModel()
+        public List<CustomerViewModel> GetCustomersViewModel()
         {
-            /* return  (from cust in GetCustomers()
-                 select new CustomerViewModel
-                 {
-                     id = cust.Id,
-                     status = cust.Status,
-                     identification = cust.Identification,
-                     account = cust.Account, lastname=cust.User.LastName
-                 /*    userdata = new UserViewModel()
-                     {
-                         id = cust.User.Id,
-                         lastname = cust.User.LastName,
-                         name = cust.User.Name,
-                         creationdate = cust.User.Creation_Date,
-                         password = cust.User.Password,
-                         identification = cust.User.Identification,
-                         status = cust.User.Identification,
-                         username = cust.User.UserName
-                     }
-        }).ToList();*/
-           
-            return db.Customers_Profiles.ToList();
+
+            return db.Customers_Profiles.Select(model => new CustomerViewModel()
+            {
+                id = model.Id,
+                account = model.Account.ToString(),
+                date = model.User.Creation_Date,
+                identification = model.User.Identification,
+                lastName = model.User.LastName,
+                name = model.User.Name,
+                username = model.User.UserName
+            }).ToList();
 
 
 
         }
 
-        public bool UpdateCustomer(int id,Customers_Profile customer)
+        public bool UpdateCustomer(int id, Customers_Profile customer)
         {
             Customers_Profile cust = GetCustomer(id);
             cust.Account = customer.Account;

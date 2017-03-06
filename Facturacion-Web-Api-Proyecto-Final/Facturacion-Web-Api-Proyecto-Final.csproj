@@ -99,7 +99,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
@@ -118,10 +120,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BD.mdf" />
-    <Content Include="App_Data\BD_log.ldf">
-      <DependentUpon>BD.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Facturacion.mdf" />
     <Content Include="App_Data\Facturacion_log.ldf">
       <DependentUpon>Facturacion.mdf</DependentUpon>
@@ -143,11 +141,15 @@
   <ItemGroup>
     <Compile Include="AbstractRepository\IArticleRepository.cs" />
     <Compile Include="AbstractRepository\ICustomerRepository.cs" />
+    <Compile Include="AbstractRepository\ISellerProfileRepository.cs" />
+    <Compile Include="AbstractRepository\IUserRepository.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configs\DataContextBill.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CustomerProfileController.cs" />
+    <Compile Include="Controllers\SellerProfileController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,9 +162,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostoryImp\ArticleRepository.cs" />
     <Compile Include="RepostoryImp\CustomerRepository.cs" />
+    <Compile Include="RepostoryImp\SellerProfileRepository.cs" />
+    <Compile Include="RepostoryImp\UserRepository.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\SellerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="apiapp.json" />
+    <None Include="Properties\PublishProfiles\IntegracionPropietariaFacturacion - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\IntegracionPropietariaFacturacion - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

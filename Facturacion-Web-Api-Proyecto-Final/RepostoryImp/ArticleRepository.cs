@@ -6,6 +6,7 @@ using System.Web;
 using Facturacion_Web_Api_Proyecto_Final.Models;
 using Facturacion_Web_Api_Proyecto_Final.Configs;
 using System.Configuration;
+using Facturacion_Web_Api_Proyecto_Final.ViewModels;
 
 namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 {
@@ -14,7 +15,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         private static readonly string constr = ConfigurationManager.ConnectionStrings["FacturacionConnectionString"].ConnectionString;
         private DataContextBill db;
 
- 
+
         public ArticleRepository()
         {
             db = new DataContextBill(constr);
@@ -33,6 +34,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 return null;
             }
 
@@ -55,21 +57,33 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
         }
 
-        public Article GetArticle(long id )
+        public Article GetArticle(long id)
         {
             return db.Articles.Where(art => art.Id == id).FirstOrDefault();
- 
+
         }
 
-        public IEnumerable<Article> GetArticles()
+        public IEnumerable<ArticleViewModel> GetArticles()
+        {
+            return db.Articles.Select(model => new ArticleViewModel()
+            {
+                description = model.Description,
+                id = model.Id,
+                price = model.Price
+            });        }
+
+        public ArticleViewModel GetArticleViewModel(long id)
         {
 
-            return db.Articles.ToList();
+            return db.Articles.Where(art => art.Id == id).Select(model => new ArticleViewModel()
+            {
+                description = model.Description,
+                id = model.Id,
+                price = model.Price
+            }).FirstOrDefault();
         }
 
-       
-
-        public bool UpdateArticle(long id,Article article)
+        public bool UpdateArticle(long id, Article article)
         {
             Article art = GetArticle(id);
             art.Price = article.Price;
@@ -80,7 +94,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
                 return false;
