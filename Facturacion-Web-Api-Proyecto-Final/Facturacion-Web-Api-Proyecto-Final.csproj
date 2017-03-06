@@ -143,11 +143,15 @@
   <ItemGroup>
     <Compile Include="AbstractRepository\IArticleRepository.cs" />
     <Compile Include="AbstractRepository\ICustomerRepository.cs" />
+    <Compile Include="AbstractRepository\ISellerProfileRepository.cs" />
+    <Compile Include="AbstractRepository\IUserRepository.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configs\DataContextBill.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CustomerProfileController.cs" />
+    <Compile Include="Controllers\SellerProfileController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,6 +164,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostoryImp\ArticleRepository.cs" />
     <Compile Include="RepostoryImp\CustomerRepository.cs" />
+    <Compile Include="RepostoryImp\SellerProfileRepository.cs" />
+    <Compile Include="RepostoryImp\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="apiapp.json" />

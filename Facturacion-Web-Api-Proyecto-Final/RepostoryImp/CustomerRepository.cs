@@ -6,7 +6,6 @@ using System.Web;
 using Facturacion_Web_Api_Proyecto_Final.Models;
 using Facturacion_Web_Api_Proyecto_Final.Configs;
 using System.Configuration;
-using Facturacion_Web_Api_Proyecto_Final.ViewModels;
 
 namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 {
