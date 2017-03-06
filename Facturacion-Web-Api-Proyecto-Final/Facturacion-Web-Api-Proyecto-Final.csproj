@@ -160,9 +160,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostoryImp\ArticleRepository.cs" />
     <Compile Include="RepostoryImp\CustomerRepository.cs" />
-    <Compile Include="ViewModels\CustomerViewModel.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="apiapp.json" />

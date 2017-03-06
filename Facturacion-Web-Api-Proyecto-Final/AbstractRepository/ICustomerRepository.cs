@@ -16,6 +16,6 @@ namespace Facturacion_Web_Api_Proyecto_Final.AbstractRepository
         bool DeleteCustomer(Customers_Profile customer);
         IEnumerable<Customers_Profile> GetCustomers();
         bool UpdateCustomer(int id,Customers_Profile customer);
-        List<CustomerViewModel> GetCustomersViewModel();
+        List<Customers_Profile> GetCustomersViewModel();
     }
 }

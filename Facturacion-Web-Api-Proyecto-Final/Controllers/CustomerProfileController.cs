@@ -21,7 +21,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         }
 
         [HttpDelete]
-        public bool DeleteCustomer(int id )
+        public bool DeleteCustomer(int id)
         {
             var cust = repository.GetCustomer(id);
 
@@ -29,26 +29,26 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         }
 
         [HttpPut]
-        public bool UpdateCustomer(int id,string name,string lastname,string ident,string password,int account)
+        public bool UpdateCustomer(int id, string name, string lastname, string ident, string password, int account)
         {
             var customer = new Customers_Profile();
-            customer.Account=account;
+            customer.Account = account;
             customer.User = new User();
             customer.User.Name = name;
             customer.User.LastName = lastname;
             customer.Identification = ident;
             customer.User.Password = password;
 
-            return repository.UpdateCustomer(id,customer);
+            return repository.UpdateCustomer(id, customer);
         }
 
 
 
 
         [HttpGet]
-        public Customers_Profile GetCustomer(string username,string password)
+        public Customers_Profile GetCustomer(string username, string password)
         {
-            var customer = repository.GetCustomer(username,password);
+            var customer = repository.GetCustomer(username, password);
 
             return customer;
         }
@@ -58,15 +58,14 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         [HttpGet]
         public List<Customers_Profile> GetCustomers()
         {
-            var customerList = repository.GetCustomers();
 
-            return customerList.ToList()  ;
+            return repository.GetCustomersViewModel();
         }
 
 
 
         [HttpPost]
-        public bool AddCustomer(string name, string lastname, string ident, string username ,string password, int account)
+        public bool AddCustomer(string name, string lastname, string ident, string username, string password, int account)
         {
 
             var customer = new Customers_Profile();
@@ -82,7 +81,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             user.Status = "1";
             user.Creation_Date = DateTime.Now;
             user.Customers_Profiles.Add(customer);
-           var  subject= repository.AddCustomer(user);
+            var subject = repository.AddCustomer(user);
 
             return true;
         }

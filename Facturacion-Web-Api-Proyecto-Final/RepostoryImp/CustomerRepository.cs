@@ -83,29 +83,29 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
             return customerList;
         }
 
-        public List<CustomerViewModel> GetCustomersViewModel()
+        public List<Customers_Profile> GetCustomersViewModel()
         {
-          var list=  (from cust in GetCustomers()
-                select new CustomerViewModel
-                {
-                    id = cust.Id,
-                    status = cust.Status,
-                    identification = cust.Identification,
-                    account = cust.Account,
-                    userdata = new UserViewModel()
-                    {
-                        id = cust.User.Id,
-                        lastname = cust.User.LastName,
-                        name = cust.User.Name,
-                        creationdate = cust.User.Creation_Date,
-                        password = cust.User.Password,
-                        identification = cust.User.Identification,
-                        status = cust.User.Identification,
-                        username = cust.User.UserName
-                    }
-                }).ToList();
-            return list;
-            ;
+            /* return  (from cust in GetCustomers()
+                 select new CustomerViewModel
+                 {
+                     id = cust.Id,
+                     status = cust.Status,
+                     identification = cust.Identification,
+                     account = cust.Account, lastname=cust.User.LastName
+                 /*    userdata = new UserViewModel()
+                     {
+                         id = cust.User.Id,
+                         lastname = cust.User.LastName,
+                         name = cust.User.Name,
+                         creationdate = cust.User.Creation_Date,
+                         password = cust.User.Password,
+                         identification = cust.User.Identification,
+                         status = cust.User.Identification,
+                         username = cust.User.UserName
+                     }
+        }).ToList();*/
+           
+            return db.Customers_Profiles.ToList();
 
 
 
