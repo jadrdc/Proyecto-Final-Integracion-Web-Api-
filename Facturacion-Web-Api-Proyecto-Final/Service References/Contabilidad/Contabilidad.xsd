@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws.contabilidad.com/" targetNamespace="http://ws.contabilidad.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DetEntradaContable" type="tns:entradaContableDet" />
+  <xs:element name="crearAsiento" type="tns:crearAsiento" />
+  <xs:element name="crearAsientoResponse" type="tns:crearAsientoResponse" />
+  <xs:element name="id" nillable="true" type="xs:anyType" />
+  <xs:element name="obtenerAuxiliares" type="tns:obtenerAuxiliares" />
+  <xs:element name="obtenerAuxiliaresResponse" type="tns:obtenerAuxiliaresResponse" />
+  <xs:element name="obtenerCodigosError" type="tns:obtenerCodigosError" />
+  <xs:element name="obtenerCodigosErrorResponse" type="tns:obtenerCodigosErrorResponse" />
+  <xs:element name="obtenerTransacciones" type="tns:obtenerTransacciones" />
+  <xs:element name="obtenerTransaccionesResponse" type="tns:obtenerTransaccionesResponse" />
+  <xs:complexType name="obtenerAuxiliares">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="obtenerAuxiliaresResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="auxiliar" type="tns:AuxiliarCatalogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AuxiliarCatalogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="crearAsiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="asiento" type="tns:entradaContable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="entradaContable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="auxiliar" type="tns:Auxiliar" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="entradasContables">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entradaContable" type="tns:entradaContableDet" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Auxiliar">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="entradaContableDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cuentaContable" type="tns:CuentaContable" />
+      <xs:element minOccurs="0" name="tipoMovimiento" type="xs:string" />
+      <xs:element name="monto" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CuentaContable">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="crearAsientoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="asientoResponse" type="tns:responseAsiento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseAsiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idAsiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerTransacciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idAuxiliar" type="xs:string" />
+      <xs:element minOccurs="0" name="idAsiento" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerTransaccionesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="detalleEntradaContable" type="tns:asientoDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="asientoDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="auxiliar" type="xs:string" />
+      <xs:element minOccurs="0" name="codigoError" type="xs:string" />
+      <xs:element minOccurs="0" name="cuentaContable" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcionAsiendo" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaAsiento" type="xs:dateTime" />
+      <xs:element name="idAsiento" type="xs:int" />
+      <xs:element name="monto" type="xs:float" />
+      <xs:element minOccurs="0" name="tipoMovimiento" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerCodigosError">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="obtenerCodigosErrorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="codigoError" type="tns:codigoDeError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="codigoDeError">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

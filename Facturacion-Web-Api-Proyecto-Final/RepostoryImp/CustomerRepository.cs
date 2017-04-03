@@ -105,14 +105,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
         public bool UpdateCustomer(int id, Customers_Profile customer)
         {
-            Customers_Profile cust = GetCustomer(id);
-            cust.Account = customer.Account;
-            cust.User.Name = customer.User.Name;
-            cust.User.LastName = customer.User.LastName;
-            cust.Identification = customer.Identification;
-            cust.User.Password = customer.User.Password;
-
-
+            
             try
             {
                 db.SubmitChanges();

@@ -3,4 +3,7 @@
   <parameter name="FacturacionConnectionString-Web.config Connection String" description="FacturacionConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Facturacion.mdf;Integrated Security=True;Connect Timeout=30" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Agustin\ Reinoso\\documents\\visual\ studio\ 2015\\Projects\\Facturacion-Web-Api-Proyecto-Final\\Facturacion-Web-Api-Proyecto-Final\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FacturacionConnectionString']/@connectionString" />
   </parameter>
+  <parameter name="Azure-Web.config Connection String" description="Azure Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|FacturacionCompact.sdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Agustin\ Reinoso\\documents\\visual\ studio\ 2015\\Projects\\Facturacion-Web-Api-Proyecto-Final\\Facturacion-Web-Api-Proyecto-Final\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Azure']/@connectionString" />
+  </parameter>
 </parameters>

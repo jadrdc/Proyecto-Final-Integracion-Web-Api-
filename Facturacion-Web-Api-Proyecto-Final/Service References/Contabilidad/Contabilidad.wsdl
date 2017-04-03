@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws.contabilidad.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="Contabilidad" targetNamespace="http://ws.contabilidad.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://contabilidad.ngrok.io:80/Contabilidad/Contabilidad?xsd=1" namespace="http://ws.contabilidad.com/" />
+    </xsd:schema>
+  </types>
+  <message name="obtenerAuxiliares">
+    <part name="parameters" element="tns:obtenerAuxiliares" />
+  </message>
+  <message name="obtenerAuxiliaresResponse">
+    <part name="parameters" element="tns:obtenerAuxiliaresResponse" />
+  </message>
+  <message name="obtenerTransacciones">
+    <part name="parameters" element="tns:obtenerTransacciones" />
+  </message>
+  <message name="obtenerTransaccionesResponse">
+    <part name="parameters" element="tns:obtenerTransaccionesResponse" />
+  </message>
+  <message name="obtenerCodigosError">
+    <part name="parameters" element="tns:obtenerCodigosError" />
+  </message>
+  <message name="obtenerCodigosErrorResponse">
+    <part name="parameters" element="tns:obtenerCodigosErrorResponse" />
+  </message>
+  <message name="crearAsiento">
+    <part name="parameters" element="tns:crearAsiento" />
+  </message>
+  <message name="crearAsientoResponse">
+    <part name="parameters" element="tns:crearAsientoResponse" />
+  </message>
+  <portType name="Contabilidad">
+    <operation name="obtenerAuxiliares">
+      <input wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerAuxiliaresRequest" message="tns:obtenerAuxiliares" />
+      <output wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerAuxiliaresResponse" message="tns:obtenerAuxiliaresResponse" />
+    </operation>
+    <operation name="obtenerTransacciones">
+      <input wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerTransaccionesRequest" message="tns:obtenerTransacciones" />
+      <output wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerTransaccionesResponse" message="tns:obtenerTransaccionesResponse" />
+    </operation>
+    <operation name="obtenerCodigosError">
+      <input wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerCodigosErrorRequest" message="tns:obtenerCodigosError" />
+      <output wsam:Action="http://ws.contabilidad.com/Contabilidad/obtenerCodigosErrorResponse" message="tns:obtenerCodigosErrorResponse" />
+    </operation>
+    <operation name="crearAsiento">
+      <input wsam:Action="http://ws.contabilidad.com/Contabilidad/crearAsientoRequest" message="tns:crearAsiento" />
+      <output wsam:Action="http://ws.contabilidad.com/Contabilidad/crearAsientoResponse" message="tns:crearAsientoResponse" />
+    </operation>
+  </portType>
+  <binding name="ContabilidadPortBinding" type="tns:Contabilidad">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtenerAuxiliares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerTransacciones">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerCodigosError">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="crearAsiento">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Contabilidad">
+    <port name="ContabilidadPort" binding="tns:ContabilidadPortBinding">
+      <soap:address location="http://contabilidad.ngrok.io:80/Contabilidad/Contabilidad" />
+    </port>
+  </service>
+</definitions>

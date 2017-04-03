@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Facturacion_Web_Api_Proyecto_Final.AbstractRepository;
+using Facturacion_Web_Api_Proyecto_Final.RepostoryImp;
+using Facturacion_Web_Api_Proyecto_Final.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +12,17 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private IArticleRepository repository;
+
+        public ValuesController()
         {
-            return new string[] { "value1", "value2" };
+            repository = new ArticleRepository();
+
+    }
+    // GET api/values
+    public IEnumerable<ArticleViewModel> Get()
+        {
+            return repository.GetArticles();
         }
 
         // GET api/values/5

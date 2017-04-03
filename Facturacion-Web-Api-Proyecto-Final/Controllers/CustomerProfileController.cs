@@ -29,13 +29,13 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
         }
 
         [HttpPut]
-        public bool UpdateCustomer(int id, string name, string lastname, string ident, string password, int account)
+        public bool UpdateCustomer(int id, string name, string lastname, string username,string ident, string password, string account)
         {
-            var customer = new Customers_Profile();
-            customer.Account = account;
-            customer.User = new User();
+            Customers_Profile customer = repository.GetCustomer(id);
+            customer.Account = Convert.ToInt32(account);
             customer.User.Name = name;
             customer.User.LastName = lastname;
+            customer.User.UserName = username;
             customer.Identification = ident;
             customer.User.Password = password;
 
@@ -53,6 +53,14 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return customer;
         }
 
+
+        [HttpGet]
+        public CustomerViewModel GetCustomer(string  identification)
+        {
+            var customer = repository.GetCustomersViewModel().Where(cust=>String.Equals(cust.identification,identification)).FirstOrDefault();
+        
+            return customer;
+        }
 
 
         [HttpGet]

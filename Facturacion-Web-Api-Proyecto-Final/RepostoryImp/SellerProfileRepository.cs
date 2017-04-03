@@ -7,6 +7,7 @@ using Facturacion_Web_Api_Proyecto_Final.Models;
 using System.Configuration;
 using Facturacion_Web_Api_Proyecto_Final.Configs;
 using Facturacion_Web_Api_Proyecto_Final.ViewModels;
+using System.Web.Http;
 
 namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 {
@@ -54,14 +55,16 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
             return db.Sellers_Profiles.Where(spro => spro.Id == id).FirstOrDefault();
         }
 
-        
+        public Sellers_Profile GetSellerProfile( string username , string password)
+        {
+            return null;/*(from seller in db.Sellers_Profiles
+                   where seller.User.Password==password && seller.User.UserName=username
+                   select seller).FirstOrDefault();*/
+        }
+
         public bool UpdateSellerProfile(long id, Sellers_Profile sellerProfile)
         {
-            Sellers_Profile spro = GetSellerProfile(id);
-            spro.CommisionId = sellerProfile.CommisionId;
-            spro.UserId = sellerProfile.UserId;
-            spro.Status = sellerProfile.Status;
-
+            
             try
             {
                 db.SubmitChanges();
@@ -73,6 +76,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
             }
         }
 
+       
         public SellerViewModel GetSellerProfileViewModel(long id)
         {
 
@@ -84,7 +88,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
                 identification = model.User.Identification,
                 lastName = model.User.LastName,
                 name = model.User.Name,
-                username = model.User.UserName
+                username = model.User.UserName, password=model.User.Password
             }).FirstOrDefault();
 
         }
@@ -101,7 +105,8 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
                 identification = model.User.Identification,
                 lastName = model.User.LastName,
                 name = model.User.Name,
-                username = model.User.UserName
+                username = model.User.UserName,
+                password = model.User.Password
             });
         }
     }
