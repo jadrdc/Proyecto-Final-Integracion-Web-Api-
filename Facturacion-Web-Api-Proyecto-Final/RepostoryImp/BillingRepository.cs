@@ -16,38 +16,52 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
         private static readonly string constr = ConfigurationManager.ConnectionStrings["FacturacionConnectionString"].ConnectionString;
         private DataContextBill db;
         ArticleRepository artrepository;
+        CustomerRepository custRepository;
 
         public BillingRepository()
         {
             db = new DataContextBill(constr);
 
         }
-        public List<ReportViewModel> GetReportBaseonParameters(int sellerid)
+        public List<ReportViewModel> GetReportBaseonParameters(string id, string entity)
         {
-            var data = db.Orders.Where(x => x.SellerId == sellerid).Select( model => new ReportViewModel()
+            List<ReportViewModel> list = new List<ReportViewModel>();
+             switch(entity)
             {
-                 Amount=model.Amount,
-                 Customer=model.Customers_Profile.User.Name+" "+ model.Customers_Profile.User.LastName,
-                Seller = model.Sellers_Profile.User.Name + " " + model.Sellers_Profile.User.LastName,
+                case "Cliente":
+                    {
+                        
+                       list= db.Orders.Where(cust => String.Equals(cust.Customers_Profile.User.Identification, id)).Select(model => new ReportViewModel()
+                        {   Amount = model.Amount,
+                            Customer = model.Customers_Profile.User.Name + " " + model.Customers_Profile.User.LastName,
+                            Seller = model.Sellers_Profile.User.Name + " " + model.Sellers_Profile.User.LastName
+                        }).ToList();
 
-            });
-            return data.ToList();
+                         
+                        break;
+                    }
+
+                case "Vendedores":
+                    {
+
+                        list = db.Orders.Where(cust => String.Equals(cust.Sellers_Profile.User.Identification, id)).Select(model => new ReportViewModel()
+                        {
+                            Amount = model.Amount,
+                            Customer = model.Customers_Profile.User.Name + " " + model.Customers_Profile.User.LastName,
+                            Seller = model.Sellers_Profile.User.Name + " " + model.Sellers_Profile.User.LastName
+                        }).ToList();
+
+                        break;
+                    }
+           }
+
+            return list;
+
+
         }
-     /*   public List<ReportViewModel> GetReportBaseonParametersDate(int articleid)
-        {
 
 
-            (from order in db.Orders
-             join detail in db.Order_Details
-             on order.Id equals detail.OrderId
-            ).Select(model => new ReportViewModel()
-            { Amount=model.
-              }
-            );
-                ret
 
-
-        }*/
 
 
 
@@ -80,6 +94,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.RepostoryImp
 
             try
             {
+
                 db.Orders.InsertOnSubmit(order);
                 db.SubmitChanges();
 

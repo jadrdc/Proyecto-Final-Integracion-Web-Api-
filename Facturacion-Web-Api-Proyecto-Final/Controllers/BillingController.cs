@@ -1,6 +1,7 @@
 ﻿using Facturacion_Web_Api_Proyecto_Final.Contabilidad;
 using Facturacion_Web_Api_Proyecto_Final.Models;
 using Facturacion_Web_Api_Proyecto_Final.RepostoryImp;
+using Facturacion_Web_Api_Proyecto_Final.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
@@ -15,6 +16,35 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
     {
 
         BillingRepository billing;
+
+
+
+        [HttpGet]
+        public List<ReportViewModel> GetReportData( string identification , string entity)
+        {
+            billing = new BillingRepository();
+            var list = billing.GetReportBaseonParameters(identification, entity);
+
+            return list;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public bool Bill(int customer, int seller, string articles)
         {
@@ -29,6 +59,8 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
                {
                 try
                 {
+
+
                     var client = new Contabilidad.ContabilidadClient();
 
 
@@ -64,40 +96,7 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return true;
         }
 
-        [HttpGet]
-        public Boolean BillingGet(int customer, int seller, [FromUri]int[] articles)
-        {
-            billing = new BillingRepository();
-
-
-            var bill = billing.BillCustomer(customer, seller, new int[2]);
-
-            /*   if (bill!=null)
-               {
-                   var client = new Contabilidad.ContabilidadClient();
-
-
-                   var  debito = new entradaContableDet();
-                   var credito = new entradaContableDet();
-                   debito.monto = (float)bill.Amount;
-                   debito.cuentaContable = "13";
-                   credito.monto = (float)bill.Amount;
-                   debito.cuentaContable = "6";
-                   credito.tipoMovimiento = "CR";
-                   debito.tipoMovimiento = "DB";
-
-                   entradaContableDet[] list = new entradaContableDet[2];
-                   list[0] = debito;
-                   list[1] = credito;
-                   Contabilidad.entradaContable asiento = new Contabilidad.entradaContable();
-                   asiento.auxiliar = "3";
-                   asiento.descripcion = "Grupo de Jose Agustin Reinoso";
-                   asiento.entradasContables = list;
-                  var response= client.crearAsiento(asiento);
-               }
-               */
-            return true;
-        }
+        
 
     }
 }

@@ -69,22 +69,30 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return true;
         }
 
-
-
-/*
-        [HttpPost]
-        public Sellers_Profile AddSellerProfile(int commisionId, int userId)
+        [HttpGet]
+        public SellerViewModel GetSeller(string identification)
         {
-            var spro = new Sellers_Profile()
-            {
-                CommisionId = commisionId,
-                UserId = userId,
-                Status = "1"
-            };
+            var seller = repository.AllSellersProfile().Where(cust => String.Equals(cust.identification, identification)).FirstOrDefault();
 
-            return repository.AddSellerProfile(spro);
+            return seller;
         }
-        */
+
+
+
+        /*
+                [HttpPost]
+                public Sellers_Profile AddSellerProfile(int commisionId, int userId)
+                {
+                    var spro = new Sellers_Profile()
+                    {
+                        CommisionId = commisionId,
+                        UserId = userId,
+                        Status = "1"
+                    };
+
+                    return repository.AddSellerProfile(spro);
+                }
+                */
 
         [HttpDelete]
         public bool DeleteSellerProfile(long id)
@@ -127,4 +135,6 @@ namespace Facturacion_Web_Api_Proyecto_Final.Controllers
             return repository.UpdateSellerProfile(id, spro);
         }*/
     }
+
+
 }
